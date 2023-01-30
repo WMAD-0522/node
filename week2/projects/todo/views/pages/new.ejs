@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/styles.css">
+    <style>
+        form{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 1em 0;
+        }
+        .form-control {
+            margin: 1rem 0;
+            
+        }
+        .form-control label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .form-control input, .form-control textarea {
+            margin: auto auto;
+            width: 550px;
+            padding: 0.5rem;
+        }
+        .form-control input[type="checkbox"] {
+            width: 200px;
+        }
+        .completed{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+        button{
+            margin: 1em 0;
+            padding: 0.5em 1em;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+    <title><%= title %></title>
+</head>
+
+<body>
+    <%- include('../partials/header.ejs') %>
+
+    <h1>Create New Todo</h1>
+
+    <form action="/" method="POST">
+        <div class="form-control">
+            <label for="title">Title</label>
+            <input type="text" name="title" id="title">
+        </div>
+        <div class="form-control">
+            <label for="description">Description</label>
+            <textarea name="description" id="description" cols="30" rows="10"></textarea>
+        </div>
+        <div class="form-control completed">
+            <label for="completed">Completed</label>
+            <input type="checkbox" name="completed" id="completed">
+        </div>
+        <button type="submit">Create a</button>
+    </form>
+
+    <%- include('../partials/footer.ejs') %>
+</body>
+</html>

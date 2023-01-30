@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <%- include('../partials/header') %>
+    
+    <div class="container my-4">
+        <% for( let index = 0; index < products.length; index++ ) { %>
+            <div class="card" style="width: 18rem;">
+                <img src="<%= products[index].imageUrl %>" class="card-img-top" alt="<%= products[index].title %>">
+                <div class="card-body">
+                  <h5 class="card-title"><%= products[index].title %></h5>
+                  <p class="card-text"><%= products[index].price %></p>
+                  <p class="card-text"><%= products[index].description %></p>
+                  <form action="/delete/<%= products[index].id %>" method="POST">
+                    <button class="btn btn-primary" type="submit">Delete</button>
+                    <a href="/product/<%= products[index].id %>" class="btn btn-secondary">Show</a>
+                    <a href="/edit/<%= products[index].id %>" class="btn btn-secondary">Edit</a>
+                  </form>
+                </div>
+            </div>
+        <% } %>
+    </div>
+
+    <%- include('../partials/footer') %>
+</body>
+</html>
+

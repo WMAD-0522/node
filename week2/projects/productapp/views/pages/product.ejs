@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <%- include('../partials/header') %>
+
+    <div class="card mb-3">
+        <img src="<%= product.imageUrl %>" class="card-img-top" alt="<%= product.title %>">
+        <div class="card-body">
+          <h5 class="card-title"><%= product.title %></h5>
+          <p class="card-text"><%= product.price %></p>
+          <p class="card-text"><%= product.description %></p>
+        </div>
+      </div>
+
+    <%- include('../partials/footer') %>
+</body>
+</html>

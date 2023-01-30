@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <%- include('../partials/header') %>
+    <div class="container my-4">
+        <form action="/add" method="POST">
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Title</label>
+              <input type="text" class="form-control" name="title" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Price</label>
+              <input type="number" name="price" class="form-control" id="exampleInputPassword1">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Description</label>
+                <textarea name="description" class="form-control"></textarea>
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="exampleCheck1">Image Url</label>
+              <input type="text" name="imageUrl" class="form-control" id="exampleCheck1">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+    </div>
+    <%- include('../partials/footer') %>
+</body>
+</html>
+<div></div>
+

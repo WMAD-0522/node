@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/styles.css">
+    <title><%= title %></title>
+</head>
+
+<body>
+    <%- include('../partials/header.ejs') %>
+    <h1>List of Todos</h1>
+    <ul>
+        <% for (let i = 0; i < todos.length; i++) { %>
+            <li>
+                <div class="todo-card">
+                    <input type="checkbox" name="completed" id="completed" <%= todos[i].completed ? 'checked' : '' %>>
+                    <label><%= todos[i].title %></label>
+                    <form action="/<%= todos[i].id %>" method="POST">
+                        <button type="submit">Delete</button>
+                        <a class="button" href="<%= todos[i].id %>/edit">Edit</a>
+                    </form>
+                </div>
+                <div class="todo-description">
+                    <p><%= todos[i].description %></p>
+                </div>
+            </li>
+
+            
+        <% } %>
+    </ul>
+
+    <%- include('../partials/footer.ejs') %>
+</body>
+</html>
