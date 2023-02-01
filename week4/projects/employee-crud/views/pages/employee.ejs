@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../partials/head') %>
+<%- include('../partials/header') %>
+
+<body>
+
+    <div class="container">
+        <div class="section section-department">
+            <h3>Employees</h3>
+            <div class="departments">
+                <% for( let index = 0; index < employees.length; index++ ) { %>
+                    <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+                      <div class="card-header"><%= employees[index].fullName  %></div>
+                      <div class="card-body">
+                        <p class="card-text">Email: <%= employees[index].email %></p>
+                        <p class="card-text">Salary: <%= employees[index].salary %></p>
+                        <p class="card-text">Overtime: <%= employees[index].overTime %></p>
+                      </div>
+                    </div>
+              <% } %>
+            </div>
+
+            <h3>Create Employee</h3>
+            <form action="/api/employee" method="POST">
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Full Name</label>
+                    <input type="text" name="fullName" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput2">Email</label>
+                    <input type="text" name="email" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput2">Salary</label>
+                    <input type="text" name="salary" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput2">Over Time</label>
+                    <input type="checkbox" name="overTime" id="formGroupExampleInput2" >
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput2">Department</label>
+                    <select name="departmentId" class="form-control" id="formGroupExampleInput2">
+                        <% for( let index = 0; index < departments.length; index++ ) { %>
+                            <option name="departmentId" value="<%= departments[index].id %>"><%= departments[index].name %></option>
+                        <% } %>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-dark">Submit</button>
+            </form>
+        </div>
+    </div>
+
+
+
+</body>
+
+<%- include('../partials/footer') %>
+</html>

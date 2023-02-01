@@ -6,9 +6,6 @@ const employee = (sequelize, Sequelize) => {
         email: {
             type: Sequelize.STRING,
         },
-        department: {
-            type: Sequelize.STRING,
-        },
         salary: {
             type: Sequelize.INTEGER,
         },

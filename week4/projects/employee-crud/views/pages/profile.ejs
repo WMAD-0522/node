@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../partials/head') %>
+<%- include('../partials/header') %>
+
+<body>
+
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-4"><%= employee.fullName %></h1>
+            <p class="lead"><%= employee.department.name %> - <%= employee.department.description %></p>
+            <hr class="my-4">
+            <p class="lead">
+                This is <%= employee.fullName %>'s profile page. <%= employee.fullName %> earns $<%= employee.salary %> per month. and you can contact with him/her email is <%= employee.email %>.
+            </p>
+
+
+            <% if(employee.comments.length == 0){ %>
+                <h5>There is no comment.. :(</h5>
+              <% } else{ %>  
+                <h5>Comments</h5>
+                <% for( let index = 0; index < employee.comments.length; index++ ) { %>
+                    <div class="card">
+                        <h5 class="card-header"><span><%= employee.comments[index].title %></span></h5>
+                        <div class="card-body">
+                          <h5 class="card-title"><%= employee.comments[index].comment  %></h5>
+                        </div>
+                      </div>
+                <% } %>
+             <% } %>
+            
+        </div>
+
+        <h3>Create Comment</h3>
+            <form action="/api/comment" method="POST">
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Title</label>
+                    <input type="text" name="title" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput2">Comment</label>
+                    <input type="text" name="comment" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
+                </div>
+                <input type="hidden" name="employeeId" value="<%= employee.id %>">
+                <button type="submit" class="btn btn-dark">Submit</button>
+            </form>
+    </div>
+
+</body>
+
+<%- include('../partials/footer') %>
+</html>

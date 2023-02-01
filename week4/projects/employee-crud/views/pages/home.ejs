@@ -1,8 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<%- include('../partials/head') %>
+<%- include('../partials/header') %>
+
 <body>
-    <% for( let index = 0; index < employees.length; index++ ) { %>
-        <p><%= employees[index].fullName %> <span><%= employees[index].salary %></span> </p>
-    <% } %>
+
+    <div class="container">
+        <div class="section section-department">
+            <h3>Departments</h3>
+            <div class="departments">
+                <% for( let index = 0; index < departments.length; index++ ) { %>
+                    <div class="card text-white bg-<%= colorSchema[Math.floor(Math.random() * 7)] %> mb-3" style="max-width: 18rem;">
+                      <div class="card-header"><%= departments[index].name  %></div>
+                      <div class="card-body">
+                        <p class="card-text"><%= departments[index].description %></p>
+                      </div>
+                    </div>
+              <% } %>
+            </div>
+        </div>
+
+        <div class="section section-employee">
+            <h3>Employees</h3>
+            <div class="employees">
+            <% for( let index = 0; index < employees.length; index++ ) { %>
+                
+                  <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                      <h5 class="card-title"><%= employees[index].fullName %></h5>
+                      <p class="card-text">Email: <%= employees[index].email %></h6>
+                      <p class="card-text">Salary: <%= employees[index].salary %></p>
+                        <p class="card-text">Over time: <%= employees[index].overTime %></p>
+                      <a href="/api/employee/<%= employees[index].id %>" class="card-link">Go to Employee</a>
+                    </div>
+                  </div>
+                
+            <% } %>
+          </div>
+        </div>
+
+        
+        <div class="section section-comment">
+            <h3>Comments</h3>
+            <% for( let index = 0; index < comments.length; index++ ) { %>
+                <div class="card">
+                    <h5 class="card-header"><span><%= comments[index].title %></span> <span class="author"><%= comments[index].employee.fullName %></span></h5>
+                    <div class="card-body">
+                      <h5 class="card-title"><%= comments[index].comment  %></h5>
+                    </div>
+                  </div>
+            <% } %>
+        </div>
+    </div>
+
 </body>
+
+<%- include('../partials/footer') %>
 </html>

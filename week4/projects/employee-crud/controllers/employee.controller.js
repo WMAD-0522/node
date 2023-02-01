@@ -14,18 +14,23 @@ const createEmployee = (req, res) => {
         return;
     }
 
+    // make checkbox value to boolean
+    req.body.overTime = req.body.overTime ? true : false;
+
     const employee = {
         fullName: req.body.fullName,
         email: req.body.email,
-        department: req.body.department,
         salary: req.body.salary,
-        overTime: req.body.overTime
+        overTime: req.body.overTime,
+        // departmentId: req.body.departmentId
+        departmentId: req.body.departmentId
     };
 
     db.employees.create(employee)
         .then(data => {
             // res.send(data);
-            res.status(201).send(data);
+            // res.status(201).send(data);
+            res.redirect("/employee");
         }).catch(err => {
             res.status(500).send({
                 message: err.message || "Some error occured while creating the Employee record"
@@ -34,24 +39,27 @@ const createEmployee = (req, res) => {
 };
 
 const findAllEmployees = (req, res) => {
-    db.employees.findAll()
+    
+    db.employees.findAll({ include: ["department", "comments"], order: [["createdAt", "DESC"]] })
         .then(data => {
-            // res.status(200).send(data);
-            res.render("pages/home", { employees: data })
+            res.status(200).send(data);
+            // res.render("pages/home", { employees: data })
         }).catch(err => {
             res.status(500).send({
                 message: err.message || "Some error occured while retrieving the Employees"
             });
         })
+
 };
 
 const findOneEmployeeById = (req, res) => {
     const id = req.params.id;
 
-    db.employees.findByPk(id)
+    db.employees.findByPk(id, { include: ["department", "comments"] })
         .then(data => {
             if(data) {
-                res.status(200).send(data)
+                // res.status(200).send(data)
+                res.render("pages/profile", { employee: data })
             }else{
                 res.status(404).send({
                     message: `Cannot find Employee using id=${id}`

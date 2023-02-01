@@ -4,6 +4,9 @@ import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import db from "./models/index.js";
 import employeeRoutes from "./routes/employee.route.js"
+import departmentRoutes from "./routes/department.route.js"
+import commentRoutes from "./routes/comment.route.js"
+import homeRoutes from "./routes/home.route.js"
 
 dotenv.config();
 // dotenv.config will initialize the environment variables from the .env file
@@ -14,6 +17,9 @@ const app = express();
 
 app.set("view engine", "ejs");
 // app.set() will set the view engine to ejs
+
+app.use(express.static("public"));
+// app.use() will activate the public folder
 
 app.use(cors());
 // cors() will allow the server to accept requests from any origin
@@ -32,7 +38,10 @@ app.listen(PORT, () => {
     console.log(`Server is running in port ${PORT}`);
 })
 
+app.use("/", homeRoutes);
 app.use("/api/employee", employeeRoutes);
+app.use("/api/department", departmentRoutes);
+app.use("/api/comment", commentRoutes);
 
 db.sequelize.sync({
     // force: true
