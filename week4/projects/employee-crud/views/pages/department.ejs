@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../partials/head') %>
+    <%- include('../partials/header') %>
+    <body>
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4">EmployeeCRUD - Department</h1>
+                <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+                
+                <h3>Department</h3>
+                <div class="department section">
+                    <% for( let index = 0; index < departments.length; index++ ) { %>
+                        <div class="card text-bg-dark mb-3" style="max-width: 18rem;">
+                            <div class="card-header">Department Number: <%= departments[index].id  %></div>
+                            <div class="card-body">
+                              <h5 class="card-title"><%= departments[index].name  %></h5>
+                              <p class="card-text"><%= departments[index].description  %></p>
+                            </div>
+                        </div>
+                    <% } %>
+                </div>
+
+                <h3>Create Department</h3>
+
+                <form action="/api/department/" method="POST">
+                    <div class="form-group">
+                      <label for="formGroupExampleInput">Name</label>
+                      <input type="text" name="name" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+                    </div>
+                    <div class="form-group mt-2">
+                      <label for="formGroupExampleInput2">Description</label>
+                      <input type="text" name="description" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
+                    </div>
+
+                    <button class="btn btn-dark mt-3">Create</button>
+                </form>
+            
+            </div>
+        </div>
+    </body>
+    <%- include('../partials/footer') %>
+</html>

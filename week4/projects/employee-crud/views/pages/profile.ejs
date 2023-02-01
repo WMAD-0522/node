@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../partials/head') %>
+    <%- include('../partials/header') %>
+    <body>
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4"><%= employee.fullName  %></h1>
+                <p class="lead">Hello I'am working on <%= employee.department.name  %></p>
+                
+                <p class="lead">My Email is <%= employee.email %></p>
+                <p class="lead">I am currently making $<%= employee.salary %> per month</p>
+            
+                <% if(employee.comments.length == 0) { %>
+                    <p class="lead">No comments yet</p>
+                <% } else { %>
+
+                <h4>Comments</h4>
+                <ul>
+                    <% for (let i = 0; i < employee.comments.length; i++) { %>
+                        <li> <span><b><%= employee.comments[i].title %></b></span> <%= employee.comments[i].comment %></li>
+                    <% } %>
+                </ul>
+
+                <% } %>
+
+                <h3>Create Comment</h3>
+
+                <form action="/api/comment/" method="POST">
+                    <div class="form-group">
+                      <label for="formGroupExampleInput">Title</label>
+                      <input type="text" name="title" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+                    </div>
+                    <div class="form-group mt-2">
+                      <label for="formGroupExampleInput2">Comment</label>
+                      <textarea name="comment" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                    <input type="hidden" name="employeeId" value="<%= employee.id %>">
+                    <button class="btn btn-dark mt-3">Create</button>
+                </form>
+            </div>
+        </div>
+    </body>
+    <%- include('../partials/footer') %>
+</html>

@@ -1,0 +1,14 @@
+.section {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+}
+
+.employee p {
+    margin-bottom: 6px;
+}
+
+.employee .card .card-body a {
+    margin-top: 12px;
+}

@@ -16,8 +16,6 @@ const dbConfig = {
     }
 };
 
-console.log(dbConfig);
-
 export default dbConfig;
 // export default will export the dbConfig object as the default export
 

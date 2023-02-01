@@ -14,18 +14,20 @@ const createEmployee = (req, res) => {
         return;
     }
 
+
     const employee = {
         fullName: req.body.fullName,
         email: req.body.email,
-        department: req.body.department,
         salary: req.body.salary,
-        overTime: req.body.overTime
+        overTime: req.body.overTime ? true : false,
+        departmentId: req.body.departmentId
     };
 
     db.employees.create(employee)
         .then(data => {
             // res.send(data);
-            res.status(201).send(data);
+            // res.status(201).send(data);
+            res.redirect('/employee')
         }).catch(err => {
             res.status(500).send({
                 message: err.message || "Some error occured while creating the Employee record"

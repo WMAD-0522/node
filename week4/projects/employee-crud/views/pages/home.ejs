@@ -1,8 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-<body>
-    <% for( let index = 0; index < employees.length; index++ ) { %>
-        <p><%= employees[index].fullName %> <span><%= employees[index].salary %></span> </p>
-    <% } %>
-</body>
+    <%- include('../partials/head') %>
+    <%- include('../partials/header') %>
+    <body>
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4">EmployeeCRUD - Home</h1>
+                <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+
+                <h3>Department</h3>
+                <div class="department section">
+                    <% for( let index = 0; index < departments.length; index++ ) { %>
+                        <div class="card text-bg-<%= colorSchema[Math.floor(Math.random() * 7)]  %> mb-3" style="max-width: 18rem;">
+                            <div class="card-header">Department Number: <%= departments[index].id  %></div>
+                            <div class="card-body">
+                              <h5 class="card-title"><%= departments[index].name  %></h5>
+                              <p class="card-text"><%= departments[index].description  %></p>
+                            </div>
+                        </div>
+                        <!-- <p><%= departments[index].name  %></p> -->
+                    <% } %>
+                </div>
+
+                <h3>Employee</h3>
+                <div class="employee section">
+                    
+                    <% for( let index = 0; index < employees.length; index++ ) { %>
+                        <div class="card" style="width: 18rem;">
+                            <!-- <img src="..." class="card-img-top" alt="..."> -->
+                            <div class="card-body">
+                              <h5 class="card-title"><%= employees[index].fullName  %></h5>
+                              <p class="card-text">Email: <%= employees[index].email  %></p>
+                              <p class="card-text">Salary: <%= employees[index].salary  %></p>
+                              <p class="card-text">Over Time: <%= employees[index].overTime  %></p>
+                              <a href="/profile/<%= employees[index].id  %>" class="btn btn-dark">Go to Profile</a>
+                            </div>
+                          </div>
+                        
+                        <!-- <p><%= employees[index].fullName  %></p> -->
+                    <% } %>
+                </div>
+
+                <h3>Comment</h3>
+                <div class="comment section">
+                    <% for( let index = 0; index < comments.length; index++ ) { %>
+                        <div class="card border-<%= colorSchema[Math.floor(Math.random() * 7)]  %> mb-3" style="max-width: 18rem;">
+                            <div class="card-header">by <%= comments[index].employee.fullName  %></div>
+                            <div class="card-body text-dark  %>">
+                              <h5 class="card-title"><%= comments[index].title  %></h5>
+                              <p class="card-text"><%= comments[index].comment  %></p>
+                            </div>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </body>
+    <%- include('../partials/footer') %>
 </html>

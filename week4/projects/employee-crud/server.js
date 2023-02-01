@@ -3,7 +3,10 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import db from "./models/index.js";
-import employeeRoutes from "./routes/employee.route.js"
+import employeeRoutes from "./routes/employee.route.js";
+import homeRoutes from "./routes/home.route.js";
+import departmentRoutes from './routes/department.route.js';
+import commentRoutes from "./routes/comment.route.js";
 
 dotenv.config();
 // dotenv.config will initialize the environment variables from the .env file
@@ -24,6 +27,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // bodyParser.urlencoded() will parse the request body as URL encoded data
 // { extended: true } will allow to parse nested objects
 
+app.use(express.static("public"));
+// express.static() will serve the static files from the public folder
+
 app.get("/health", (req, res) => {
     res.json({ message: `Server is running in port ${PORT}` });
 });
@@ -32,7 +38,10 @@ app.listen(PORT, () => {
     console.log(`Server is running in port ${PORT}`);
 })
 
+app.use("/", homeRoutes);
 app.use("/api/employee", employeeRoutes);
+app.use("/api/department", departmentRoutes);
+app.use("/api/comment", commentRoutes);
 
 db.sequelize.sync({
     // force: true
