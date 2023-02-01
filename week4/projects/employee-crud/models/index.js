@@ -1,5 +1,5 @@
 import Sequelize from "sequelize";
-import dbConfig from "../config/db.config.js";
+import dbConfig from "../config/db.postgress.js";
 import employeeModel from "./employee.model.js";
 import departmentModel from "./department.model.js";
 import commentModel from "./comment.model.js";

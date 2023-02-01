@@ -11,6 +11,13 @@ DB_USER = root
 PASSWORD = password
 DB = employeedb
 dialect = mysql
+
+&&&&&&&&&&&&&&
+
+PG_USER = postgres
+PG_PASSWORD = toor
+PG_DB = employeedb
+PG_dialect = postgres
 ```
 
 - Then, run `npm run dev` to start the server using nodemon
