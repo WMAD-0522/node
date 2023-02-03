@@ -1,13 +1,13 @@
 import express from "express";
-import jwt from "jsonwebtoken";
 import User from "../modal/user.modal.js";
 import bcrypt from "bcrypt";
+import dotenv from "dotenv";
+import jwtToken from "../service/jwt.service.js";
+import redisClient from "../service/redis.service.js";
+
+dotenv.config();
 
 const router = express.Router();
-
-let createToken = (payload) => {
-    return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES_IN })
-}
 
 router.post("/login", async (req, res) => {
 
@@ -32,9 +32,11 @@ router.post("/login", async (req, res) => {
             })
         }
 
-        const token = createToken({ id: user._id });
+        const token = jwtToken.createToken({ id: user._id });
 
-        res.status(200).json({
+        await redisClient.set(token.toString(), user._id.toString());
+
+        res.header("Authorization", token).status(200).json({
             status: "success",
             token,
             user: {
@@ -83,5 +85,31 @@ router.post("/register", async (req, res) => {
         })
     }
 });
+
+router.get("/", (req, res) => {
+    User.find()
+    .then((users) => {
+        res.status(200).json({
+            message: "Users fetched successfully!",
+            users
+        })
+    })
+    .catch((error) => {
+        res.status(500).json({
+            message: "Something went wrong!",
+            error
+        })
+    })
+});
+
+router.post("/logout", (req, res, next) => {
+    const token = req.headers.authorization.toString();
+    console.log(token);
+
+    res.status(200).json({
+        status: "success",
+        message: "User logged out successfully!"
+    })
+})
 
 export default router;
