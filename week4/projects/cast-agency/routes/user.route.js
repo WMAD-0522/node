@@ -1,13 +1,10 @@
 import express from "express";
-import jwt from "jsonwebtoken";
 import User from "../modal/user.modal.js";
 import bcrypt from "bcrypt";
+import jwtToken from "../service/jwt.service.js";
+import redisClient from "../service/redis.service.js";
 
 const router = express.Router();
-
-let createToken = (payload) => {
-    return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES_IN })
-}
 
 router.post("/login", async (req, res) => {
 
@@ -32,9 +29,11 @@ router.post("/login", async (req, res) => {
             })
         }
 
-        const token = createToken({ id: user._id });
+        const token = jwtToken.createToken({ id: user._id });
 
-        res.status(200).json({
+        await redisClient.set(token.toString(), user._id.toString());
+
+        res.header("Authorization", token).status(200).json({
             status: "success",
             token,
             user: {
@@ -43,10 +42,12 @@ router.post("/login", async (req, res) => {
                 email: user.email
             }
         })
-
+        
     } catch (error) {
+        console.log(error);
         res.status(500).json({
             message: "Something went wrong!",
+            error
         })
     }
 });
@@ -60,6 +61,7 @@ router.post("/register", async (req, res) => {
                 status: "fail",
                 message: "Email already exists!"
             });
+
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
@@ -71,6 +73,7 @@ router.post("/register", async (req, res) => {
         });
 
         const result = await user.save();
+        // save user to database
 
         res.status(201).json({
             message: "User created successfully!",
