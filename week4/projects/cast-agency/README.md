@@ -1,7 +1,7 @@
 ### Project: Casting Agency
 
 ```env
-MONGO_HOST = mongodb+srv://kubilaycakmak:JZZ1f0Yf9YNDqhn8@projectx.2oeyzpf.mongodb.net/?retryWrites=true&w=majority
+MONGO_HOST = put your mongodb credential
 HOST = localhost
 PORT = 3001
 JWT_SECRET = "helloThisisMySecret12Blabla"
