@@ -2,10 +2,18 @@ import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
+
+// Database
 import db from "./config/db.config.js";
+
+// Routes
 import userRoutes from "./routes/user.route.js";
 import postRoutes from "./routes/post.route.js";
-import redisClient from "./service/redis.service.js";
+import actorRoutes from "./routes/actor.route.js";
+import castRoutes from "./routes/castagency.route.js";
+
+// Redis
+import redisClient from "./services/redis.service.js";
 
 dotenv.config();
 const app = express();
@@ -32,6 +40,8 @@ app.get("/health", (req, res) => {
 
 app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
+app.use("/api/actors", actorRoutes);
+app.use("/api/casts", castRoutes);
 
 app.listen(process.env.PORT, () => {
     console.log("Server is running on port " + process.env.PORT + "...");

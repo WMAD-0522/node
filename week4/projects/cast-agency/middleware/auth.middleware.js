@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
-import jwtToken from '../service/jwt.service.js';
-import redisClient from "../service/redis.service.js";
+import jwtToken from '../services/jwt.service.js';
+import redisClient from "../services/redis.service.js";
 
 dotenv.config();
 
