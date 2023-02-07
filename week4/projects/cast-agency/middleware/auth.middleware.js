@@ -5,6 +5,9 @@ import redisClient from "../service/redis.service.js";
 dotenv.config();
 
 const auth = async (req, res, next) => {
+
+    // TODO: if token expired we should logout the user
+
     const token = req.headers.authorization;
 
     const redisToken = await redisClient.get(token);
@@ -30,7 +33,10 @@ const auth = async (req, res, next) => {
             next();
 
         }catch(err){
-
+            return res.status(500).json({
+                status: "fail",
+                message: "Unauthorized!"
+            })
         }
     }
 }

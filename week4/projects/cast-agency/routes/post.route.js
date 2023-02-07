@@ -1,5 +1,5 @@
 import express from "express";
-import Post from "../modal/post.modal.js";
+import Post from "../models/post.model.js";
 import auth from "../middleware/auth.middleware.js";
 
 const router = express.Router();
