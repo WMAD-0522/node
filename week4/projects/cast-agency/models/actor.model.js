@@ -4,6 +4,7 @@ const actorSchema = new mongoose.Schema({
     fullName: String,
     age: Number,
     gender: String,
+    avatar: String,
     physical_information: {
         height: Number,
         weight: Number,

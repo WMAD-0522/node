@@ -1,6 +1,6 @@
 import User from '../models/user.model.js';
 import bcrypt from 'bcrypt';
-import jwtToken from "../service/jwt.service.js"
+import { createToken } from '../service/jwt.service.js';
 import redisClient from "../service/redis.service.js";
 
 export const login = async (req, res) => {
@@ -24,7 +24,7 @@ export const login = async (req, res) => {
             })
         }
 
-        const token = jwtToken.createToken({ id: user._id });
+        const token = createToken({ id: user._id });
 
         await redisClient.set(token.toString(), user._id.toString());
 
