@@ -9,6 +9,11 @@ const castAgencySchema = new mongoose.Schema({
     bio: String,
     logo: String,
     since: Number,
+    // add user id to the cast agency
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    },
     actors: [
         {
             type: mongoose.Schema.Types.ObjectId,

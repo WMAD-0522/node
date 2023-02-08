@@ -1,13 +1,14 @@
 import CastAgency from "../models/castagency.model.js";
 import mongoose from "mongoose";
+import User from "../models/user.model.js";
 
 export const createAgency = async (req, res) => {
-    const { name, location, phoneNumber, website, email, bio, logo, since } = req.body;
+    const { name, location, phoneNumber, website, email, bio, logo, since, user } = req.body;
 
     // false: null, undefined, 0, "", false, NaN
     // true: "0", "false", [], {}
 
-    if(!name || !location || !phoneNumber || !website || !email || !bio || !logo || !since){
+    if(!name || !location || !phoneNumber || !website || !email || !bio || !logo || !since || !user){
         return res.status(400).json({
             status: "fail",
             message: "Please provide all required fields!"
@@ -23,13 +24,18 @@ export const createAgency = async (req, res) => {
             email,
             bio,
             logo,
-            since
+            since,
+            user
         };
         const newAgency = await CastAgency.create(cast);
+
+        await User.findByIdAndUpdate(user,{ $push: { agency: newAgency._id }},{ new: true });
+        
         res.status(201).json({
             status: "success",
             data: newAgency
         });
+        
     } catch(err) {
         res.status(500).json({
             status: "fail",

@@ -102,14 +102,19 @@ export const deleteActor = async (req, res) => {
     const { id } = req.params;
 
     try {
-        await Actor.findByIdAndRemove(id);
-        
-        // TODO Once i delete the actor, I also needs to delete from CastAgency Collection
+        await Actor.findByIdAndRemove(id).then((res) => {
+            CastAgency.findByIdAndUpdate(
+                res.agent,
+                { $pull: { actors: res._id }},
+                {new: true},
+                (err, updatedCast) => {
+                    if(err) console.log(err);
+                    console.log(updatedCast);
+                }
+            )
+        });
+        // TODO:DONE Once i delete the actor, I also needs to delete from CastAgency Collection
 
-        res.status(200).json({
-            status: "success",
-            message: "actor deleted successfully!"
-        })
     } catch (error) {
         res.status(500).json({
             status: "fail",
