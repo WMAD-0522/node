@@ -8,6 +8,6 @@ import { getMe, updateInformation } from "../controllers/user.controller.js";
 const router = express.Router();
 
 router.get("/me", auth, getMe);
-router.post("/update", auth, updateInformation);
+router.put("/update", auth, updateInformation);
 
 export default router;

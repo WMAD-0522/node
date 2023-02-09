@@ -1,14 +1,13 @@
 // /me this is going to return the information back to the auth user
 // /update-information to update user informations
 import User from "../models/user.model.js";
-import redisClient from "../service/redis.service.js";
 
 export const getMe = async (req, res, next) => {
     const id = req.user;
 
     try {
         
-        let user = await User.findById(id).populate("agency");
+        let user = await User.findById(id).populate("agencies");
 
         res.status(200).json({
             status: "success",

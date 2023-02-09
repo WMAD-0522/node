@@ -25,3 +25,15 @@
     object-fit: cover;
     object-position: top;
 }
+
+#agencies{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: center;
+    @media (max-width: 500px) {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}

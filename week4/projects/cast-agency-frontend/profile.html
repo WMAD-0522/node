@@ -25,7 +25,7 @@
                   <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="./profile.html">Profile</a>
                   </li>
-                  <li class="nav-item" id="agency-link">
+                  <li class="nav-item" id="cast-link">
                     <a class="nav-link" href="./agency.html">Agency</a>
                   </li>
                 </ul>
@@ -39,19 +39,109 @@
     </header>
 
     <main>
-        <div class="container py-4">
+      <div class="modal fade" id="user-update" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="staticBackdropLabel">Profile Update</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+              <div class="modal-body">
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Full Name</label>
+                  <input type="text" class="form-control" id="user-name" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Role</label>
+                    <br>
+                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                      <input value="USER" type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                      <label class="btn btn-outline-primary" for="btnradio1">USER</label>
+                    
+                      <input value="AGENCY" type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                      <label class="btn btn-outline-primary" for="btnradio2">AGENCY</label>
+                    
+                      <input value="DIRECTOR" type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+                      <label class="btn btn-outline-primary" for="btnradio3">DIRECTOR</label>
+
+                      <input value="ACTOR" type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
+                      <label class="btn btn-outline-primary" for="btnradio4">ACTOR</label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" id="user-update-button">Update</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="agency-create" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel1" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="staticBackdropLabel">Agency Create</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+              <div class="modal-body">
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Agency Name</label>
+                  <input type="text" class="form-control" id="agency-name" aria-describedby="emailHelp" placeholder="ex. Aurora">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Location</label>
+                  <input type="text" class="form-control" id="agency-location" aria-describedby="emailHelp" placeholder="ex. Vancouver, BC">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Phone Number</label>
+                  <input type="text" class="form-control" id="agency-phone" aria-describedby="emailHelp" placeholder="xxx-xxx-xxxx">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Website</label>
+                  <input type="text" class="form-control" id="agency-website" aria-describedby="emailHelp" placeholder="ex. https://..">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="agency-email" aria-describedby="emailHelp" placeholder="ex. asd@example.com">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Bio</label>
+                  <textarea type="text" class="form-control" id="agency-bio" aria-describedby="emailHelp" placeholder="ex. We are working with ..."></textarea>
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Logo</label>
+                  <input type="text" class="form-control" id="agency-logo" aria-describedby="emailHelp" placeholder="https://..">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Since</label>
+                  <input type="number" class="form-control" id="agency-since" aria-describedby="emailHelp" placeholder="ex. 2000">
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="agency-create-button">Create</button>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container py-4">
           <div class="p-5 mb-4 bg-light rounded-3">
             <div class="container-fluid py-5">
               <h1 id="name" class="display-5 fw-bold">Custom jumbotron</h1>
+              <h3><span class="badge bg-secondary" id="user-role">New</span></h3>
               <p class="col-md-8 fs-4">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. </p>
-              <button class="btn btn-outline-dark" type="button">Update informations</button>
-              <!-- TODO: update user information page and update when you click save button then you can redirect to profile page -->
+              <button class="btn btn-outline-dark" type="button" data-bs-toggle="modal" data-bs-target="#user-update">Update profile</button>
+              <button class="btn btn-outline-dark" type="button" data-bs-toggle="modal" data-bs-target="#agency-create">Create Agency</button>
+              <button class="btn btn-outline-dark" type="button">Add Actor</button>
             </div>
           </div>
       
-          <!-- TODO: Use this containers and when you click the buttons, open a new page with a form of actor and agency or you can use modals -->
-          <div class="row align-items-md-stretch">
-            <div class="col-md-6">
+          <div class="row align-items-md-stretch" id="agencies">
+            <!-- <div class="col-md-6">
               <div class="h-100 p-5 text-bg-dark rounded-3">
                 <h2 id="agency-name">Create Agency</h2>
                 <p id="agency-bio">Swap the background-color utility and add a `.text-*` color utility to mix up the jumbotron look. Then, mix and match with additional component themes and more.</p>
@@ -65,12 +155,11 @@
                 <p>Or, keep it light and add a border for some added definition to the boundaries of your content. Be sure to look under the hood at the source HTML here as we've adjusted the alignment and sizing of both column's content for equal-height.</p>
                 <button class="btn btn-outline-secondary" type="button">Go to Add Actors</button>
               </div>
-            </div>
+            </div> -->
           </div>
       
-        </div>
-      </main>
-
+      </div>
+    </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.2/axios.min.js" integrity="sha512-NCiXRSV460cHD9ClGDrTbTaw0muWUBf/zB/yLzJavRsPNUl9ODkUVmUHsZtKu17XknhsGlmyVoJxLg/ZQQEeGA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="./public/js/profile.js"></script>
 </body>

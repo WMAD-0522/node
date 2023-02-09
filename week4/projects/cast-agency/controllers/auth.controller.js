@@ -65,6 +65,7 @@ export const register = async (req, res) => {
             fullName: fullName,
             email: email,
             password: hashedPassword,
+            agencies: []
         });
 
         const result = await user.save();

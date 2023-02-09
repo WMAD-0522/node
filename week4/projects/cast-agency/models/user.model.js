@@ -9,10 +9,12 @@ const userSchema = mongoose.Schema({
         enum: [ "AGENCY", "ACTOR", "DIRECTOR", "USER" ],
         default: "USER"
     },
-    agency: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "CastAgency"
-    },
+    agencies: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "CastAgency"
+        }
+    ],
     actor: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Actor"
