@@ -1,4 +1,5 @@
 import CastAgency from "../models/castagency.model.js";
+import User from "../models/user.model.js";
 import mongoose from "mongoose";
 
 export const createAgency = async (req, res) => {
@@ -23,12 +24,18 @@ export const createAgency = async (req, res) => {
             email,
             bio,
             logo,
-            since
+            since,
+            user: req.user
         };
         const newAgency = await CastAgency.create(cast);
+
+        // also add agency id to the user
+        const user = await User.findByIdAndUpdate(req.user, { $push: { agencies: newAgency._id } }, { new: true });
+
         res.status(201).json({
             status: "success",
-            data: newAgency
+            data: newAgency,
+            user
         });
     } catch(err) {
         res.status(500).json({

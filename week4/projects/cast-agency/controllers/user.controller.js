@@ -5,10 +5,11 @@ import redisClient from "../service/redis.service.js";
 
 export const getMe = async (req, res, next) => {
     const id = req.user;
+    // comes from auth middleware
 
     try {
         
-        let user = await User.findById(id).populate("agency");
+        let user = await User.findById(id).populate("agencies");
 
         res.status(200).json({
             status: "success",
@@ -35,6 +36,8 @@ export const updateInformation = async (req, res, next) => {
             message: "You can't update your email and password",
         })
     }
+
+    console.log(data);
 
     try {
 
