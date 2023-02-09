@@ -29,4 +29,18 @@
   -o-object-position: top;
      object-position: top;
 }
+
+#agencies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+}
+@media (max-width: 500px) {
+  #agencies {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
 /*# sourceMappingURL=main.css.map */

@@ -25,7 +25,7 @@
                   <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="./profile.html">Profile</a>
                   </li>
-                  <li class="nav-item" id="agency-link">
+                  <li class="nav-item" id="cast-link">
                     <a class="nav-link" href="./agency.html">Agency</a>
                   </li>
                 </ul>
@@ -39,33 +39,197 @@
     </header>
 
     <main>
+
+      <!-- Button trigger modal -->
+
+<!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Update Informations</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Full Name</label>
+                    <input type="text" class="form-control" id="fullName" aria-describedby="emailHelp">
+                  </div>
+                  <div class="mb-3">
+                    <label for="" class="form-label">Role</label>
+                    <br>
+                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                      <input value="USER" type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                      <label class="btn btn-outline-primary" for="btnradio1">USER</label>
+                    
+                      <input value="DIRECTOR" type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                      <label class="btn btn-outline-primary" for="btnradio2">DIRECTOR</label>
+                    
+                      <input value="AGENCY" type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+                      <label class="btn btn-outline-primary" for="btnradio3">AGENCY</label>
+
+                      <input value="ACTOR" type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
+                      <label class="btn btn-outline-primary" for="btnradio4">ACTOR</label>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="save-information">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal fade" id="agency-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Create Agency</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Agency Name</label>
+                    <input type="text" class="form-control" id="agency-name" aria-describedby="emailHelp">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Phone Number</label>
+                    <input type="text" class="form-control" id="agency-phone" aria-describedby="emailHelp" placeholder="555-555-55555">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Location</label>
+                    <input type="text" class="form-control" id="agency-location" aria-describedby="emailHelp" placeholder="ex. Vancouver, BC">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Website</label>
+                    <input type="text" class="form-control" id="agency-website" aria-describedby="emailHelp" placeholder="ex. https://..">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="agency-email" aria-describedby="emailHelp" placeholder="ex. asd@example.com">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Bio</label>
+                    <textarea type="text" class="form-control" id="agency-bio" aria-describedby="emailHelp"></textarea>
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Agency Logo</label>
+                    <input type="url" class="form-control" id="agency-logo" aria-describedby="emailHelp" placeholder="ex. https://...">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Since</label>
+                    <input type="number" class="form-control" id="agency-since" aria-describedby="emailHelp" placeholder="ex. 2002">
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="create-agency">Create</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal fade" id="actor-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Add Actor</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Full Name</label>
+                    <input type="text" class="form-control" id="actor-name" aria-describedby="emailHelp">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Age</label>
+                    <input type="number" class="form-control" id="actor-age" aria-describedby="emailHelp">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Gender</label>
+                    <select class="form-select" aria-label="Default select example" id="actor-gender">
+                      <option value="male" selected>Male</option>
+                      <option value="female">Female</option>
+                      <option value="trans">Trans</option>
+                    </select>
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Avatar</label>
+                    <input type="url" class="form-control" id="actor-avatar" aria-describedby="emailHelp">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Height</label>
+                    <input type="number" class="form-control" id="actor-height" aria-describedby="emailHelp">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Weight</label>
+                    <input type="number" class="form-control" id="actor-weight" aria-describedby="emailHelp">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Eyes</label>
+                    <input type="text" class="form-control" id="actor-eyes" aria-describedby="emailHelp">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Facebook</label>
+                    <input type="text" class="form-control" id="actor-facebook" aria-describedby="emailHelp">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">LinkedIn</label>
+                    <input type="text" class="form-control" id="actor-linkedIn" aria-describedby="emailHelp">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Cast Agency</label>
+                    <select class="form-select" aria-label="Default select example" id="actor-agency">
+                      <option selected>Please select agency</option>
+                    </select>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="create-actor">Create</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="container py-4">
           <div class="p-5 mb-4 bg-light rounded-3">
             <div class="container-fluid py-5">
-              <h1 id="name" class="display-5 fw-bold">Custom jumbotron</h1>
+              <h1 id="name" class="display-5 fw-bold">User Name</h1>
+              <h4><span id="badge" class="badge bg-secondary">New</span></h4>
               <p class="col-md-8 fs-4">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. </p>
-              <button class="btn btn-outline-dark" type="button">Update informations</button>
-              <!-- TODO: update user information page and update when you click save button then you can redirect to profile page -->
+              <button class="btn btn-outline-dark" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Update profile</button>
+              <button class="btn btn-outline-dark" type="button" id="create-agency" data-bs-toggle="modal" data-bs-target="#agency-modal">Create a agency</button>
+              <button class="btn btn-outline-primary" type="button" id="add-actor" data-bs-toggle="modal" data-bs-target="#actor-modal">Add a actor</button>
             </div>
           </div>
       
           <!-- TODO: Use this containers and when you click the buttons, open a new page with a form of actor and agency or you can use modals -->
-          <div class="row align-items-md-stretch">
-            <div class="col-md-6">
-              <div class="h-100 p-5 text-bg-dark rounded-3">
-                <h2 id="agency-name">Create Agency</h2>
-                <p id="agency-bio">Swap the background-color utility and add a `.text-*` color utility to mix up the jumbotron look. Then, mix and match with additional component themes and more.</p>
-                <p id="location"></p>
-                <button class="btn btn-outline-light" type="button">Create a new one</button>
+          <div class="row align-items-md-stretch" id="agencies">
+            <!-- <div class="list-of-agencies">
+              <div class="col-md-6">
+                <div class="h-100 p-5 text-bg-dark rounded-3">
+                  <h2 id="cast-name">Create Agency</h2>
+                  <p id="cast-bio">Swap the background-color utility and add a `.text-*` color utility to mix up the jumbotron look. Then, mix and match with additional component themes and more.</p>
+                  <p id="cast-location"></p>
+                  <div class="actors"></div>
+                </div>
               </div>
-            </div>
-            <div class="col-md-6">
-              <div class="h-100 p-5 bg-light border rounded-3">
-                <h2>Add Actors</h2>
-                <p>Or, keep it light and add a border for some added definition to the boundaries of your content. Be sure to look under the hood at the source HTML here as we've adjusted the alignment and sizing of both column's content for equal-height.</p>
-                <button class="btn btn-outline-secondary" type="button">Go to Add Actors</button>
-              </div>
-            </div>
+            </div> -->
+            
+              <!-- <div class="col-md-6">
+                <div class="h-100 p-5 bg-light border rounded-3">
+                  <h2>Add Actors</h2>
+                  <p>Or, keep it light and add a border for some added definition to the boundaries of your content. Be sure to look under the hood at the source HTML here as we've adjusted the alignment and sizing of both column's content for equal-height.</p>
+                </div>
+              </div> -->
           </div>
       
         </div>
